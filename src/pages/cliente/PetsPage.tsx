@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { api, Pet } from "../../services/api";
 import { TopBarGreeting } from "../../components/mobile/TopBarGreeting";
 import { useClienteShell } from "./ClienteLayout";
-import { PawPrint, ChevronRight } from "lucide-react";
+import { PawPrint, ChevronRight, Plus } from "lucide-react";
 import { AvatarUpload } from "../../components/ui/AvatarUpload";
 
 export function PetsPage() {
@@ -52,7 +52,17 @@ export function PetsPage() {
         </div>
       ) : (
         <div className="pt-6 space-y-6">
-          <p className="text-sm font-medium text-slate-900 animate-fade-in">Seu Pets</p>
+          <div className="flex justify-between items-center px-1">
+            <p className="text-sm font-bold text-slate-900 uppercase tracking-wider animate-fade-in">Meus Pets</p>
+            <button
+              type="button"
+              onClick={() => navigate("/app/pets/novo")}
+              className="figma-btn py-2 px-4 text-xs flex items-center gap-1.5 shadow-sm"
+            >
+              <Plus className="h-3.5 w-3.5" />
+              Novo Pet
+            </button>
+          </div>
 
           <ul className="space-y-4">
             {pets.map((pet, index) => (

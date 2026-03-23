@@ -21,9 +21,8 @@ export function AgendamentoNovoPage() {
 
   const [clienteId, setClienteId] = useState("");
   const [petId, setPetId] = useState("");
-  const [servicosDisponiveis, setServicosDisponiveis] = useState<{ id: number, tipo: string, descricao: string, preco: number }[]>([]);
+  const [servicosDisponiveis, setServicosDisponiveis] = useState<{ id: number, nome: string, descricao: string, preco: number }[]>([]);
   const [servicoSelecionadoId, setServicoSelecionadoId] = useState<number | null>(null);
-  const [tipoServico, setTipoServico] = useState("BANHO");
   const [data, setData] = useState("");
   const [horario, setHorario] = useState("");
   const [horariosDisponiveis, setHorariosDisponiveis] = useState<{ hora: string, data_hora: string, disponivel: boolean }[]>([]);
@@ -49,7 +48,6 @@ export function AgendamentoNovoPage() {
         if (todosServicos.length > 0) {
           setServicosDisponiveis(todosServicos);
           setServicoSelecionadoId(todosServicos[0].id);
-          setTipoServico(todosServicos[0].tipo);
         }
 
         if (todosClientes.length > 0) {
@@ -191,11 +189,12 @@ export function AgendamentoNovoPage() {
                 onChange={(e) => {
                   const s = servicosDisponiveis.find(x => x.id === Number(e.target.value));
                   setServicoSelecionadoId(s?.id || null);
-                  setTipoServico(s?.tipo || "BANHO");
                 }}
               >
                 {servicosDisponiveis.map(s => (
-                  <option key={s.id} value={s.id}>{s.tipo} - R$ {s.preco}</option>
+                  <option key={s.id} value={s.id}>
+                    {s.nome || "Serviço"} — R$ {Number(s.preco).toFixed(2).replace(".", ",")}
+                  </option>
                 ))}
               </select>
             </div>

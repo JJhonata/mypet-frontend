@@ -186,7 +186,7 @@ describe("api pets, agendamentos e gestao", () => {
         id: 300,
         cliente: { id: 5, nome: "Joao" },
         pet: { id: 20, cliente: 5, nome: "Mel", raca: "Poodle", idade: 2, peso: 6, especie: "CAO" },
-        servico: { id: 2, tipo: "BANHO", tipo_display: "Banho", preco: 80, duracao_minutos: 60 },
+        servico: { id: 2, nome: "Banho", preco: 80, duracao_minutos: 60 },
         data_hora: "2026-03-20T10:00:00",
         status: "AGENDADO",
         observacoes: "Cuidado com orelha",
@@ -667,7 +667,7 @@ describe("api pets, agendamentos e gestao", () => {
             id: 400,
             cliente: 21,
             pet: 30,
-            servico: { id: 2, tipo: "BANHO", tipo_display: "Banho", preco: 80, duracao_minutos: 60 },
+            servico: { id: 2, nome: "Banho", preco: 80, duracao_minutos: 60 },
             data_hora: "2026-03-22T11:00:00",
             status: "AGENDADO"
           }
@@ -765,8 +765,7 @@ describe("api pets, agendamentos e gestao", () => {
         results: [
           {
             id: 3,
-            tipo: "TOSA",
-            tipo_display: "Tosa",
+            nome: "Tosa",
             descricao: "Tosa completa",
             preco: 100,
             duracao_minutos: 90,
@@ -797,7 +796,7 @@ describe("api pets, agendamentos e gestao", () => {
       data_inicio: "2026-03-01",
       data_fim: "2026-03-31"
     });
-    expect(servicos[0].tipo).toBe("TOSA");
+    expect(servicos[0].nome).toBe("Tosa");
     expect(relatorio.sucesso).toBe(true);
   });
 });

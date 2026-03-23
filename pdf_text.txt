@@ -1,0 +1,740 @@
+Instituto Federal de Educação, Ciência e Tecnologia do Ceará –
+Campus Boa Viagem
+Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas
+FarmaVet
+Sistema de Gestão para Pet Shop e Clínica Veterinária
+Projeto de Desenvolvimento de Software
+Integrantes:
+Andrey Victor
+Larissa Vieira
+Jhonata Vieira
+Matheus Cavalcante
+Michel Júnior
+Orientador:Prof. Renato William R. de Souza
+Semestre:2025.2
+Boa Viagem – CE
+2026
+SUMÁRIO
+1 Proposta de Trabalho 6
+1.1 Tema do Trabalho . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+1.2 Contextualização . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+1.3 A Situação-Problema . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+1.4 Breve Descrição da Solução . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+2 Contextualização do Problema 8
+2.1 Premissas e Restrições do Projeto . . . . . . . . . . . . . . . . . . . . . . . 8
+2.2 Caracterização da Empresa . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+2.2.1 Histórico da empresa . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+2.2.2 Atividades da empresa . . . . . . . . . . . . . . . . . . . . . . . . . 9
+2.2.3 Mercado consumidor . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+2.2.4 Concorrência . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+2.2.5 Organograma . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+2.3 Proposta de Trabalho . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+2.3.1 Método do trabalho . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+2.3.2 Previsão e alocação de recursos (humanos e materiais) . . . . . . . 11
+2.3.3 Previsão orçamentária . . . . . . . . . . . . . . . . . . . . . . . . . 12
+2.4 O Sistema Atual . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+2.4.1 Funcionamento do sistema atual . . . . . . . . . . . . . . . . . . . . 12
+2.4.2 Problemas do sistema atual . . . . . . . . . . . . . . . . . . . . . . 13
+3 A Solução 14
+3.1 O Sistema Proposto . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+3.1.1 Justificativas para o novo sistema . . . . . . . . . . . . . . . . . . . 14
+3.1.2 Situação desejada: objetivos gerais e específicos . . . . . . . . . . . 14
+2
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+3.2 Objetivo Geral . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+3.2.1 Objetivos Específicos . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+3.2.2 Soluções alternativas . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+3.3 Solução Escolhida . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+3.3.1 Escopo da solução . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+3.3.2 Lista de Requisitos do sistema . . . . . . . . . . . . . . . . . . . . . 18
+3.3.3 Diagrama de Casos de Uso . . . . . . . . . . . . . . . . . . . . . . . 20
+3.3.4 Especificações textuais dos casos de uso . . . . . . . . . . . . . . . . 21
+3.3.5 Modelo conceitual de classes . . . . . . . . . . . . . . . . . . . . . . 22
+3.3.6 Modelo conceitual de dados . . . . . . . . . . . . . . . . . . . . . . 22
+3.4 Solução Tecnológica . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+3.4.1 Diagrama de Sequência . . . . . . . . . . . . . . . . . . . . . . . . . 23
+3.4.2 Projeto de Interfaces . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+3.4.3 Diagrama de Estados . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+3.4.4 Diagrama de Atividades . . . . . . . . . . . . . . . . . . . . . . . . 25
+3.4.5 Diagrama de Componentes . . . . . . . . . . . . . . . . . . . . . . . 26
+3.4.6 Descrição da Arquitetura do Sistema . . . . . . . . . . . . . . . . . 26
+3.4.7 Modelo de classes de Projeto . . . . . . . . . . . . . . . . . . . . . . 29
+3.4.8 Modelo Físico de dados . . . . . . . . . . . . . . . . . . . . . . . . . 29
+3.4.9 Ambiente tecnológico do sistema . . . . . . . . . . . . . . . . . . . . 32
+4 Testes do Sistema 34
+4.1 Estratégia e Tipos de Teste . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+4.2 Casos de Teste por Funcionalidade . . . . . . . . . . . . . . . . . . . . . . 34
+4.3 Ferramentas de Teste . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+4.4 Comandos de Execução . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+4.5 Resultados Gerais . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 37
+5 Conclusões 38
+5.1 Reflexões e Comparação entre Objetivos Iniciais e Alcançados . . . . . . . 38
+5.2 Vantagens e Desvantagens do Sistema . . . . . . . . . . . . . . . . . . . . . 38
+5.3 Trabalhos Futuros . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+3
+LISTA DE FIGURAS
+3.1 Diagrama de Casos de Uso – FarmaVet (visão geral dos três perfis) . . . . 20
+3.2 Diagrama de Classes do Domínio – FarmaVet . . . . . . . . . . . . . . . . 22
+3.3 Diagrama de Sequência – Agendamento de Serviço . . . . . . . . . . . . . . 23
+3.4 Tela de Login – FarmaVet . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+3.5 Diagrama de Estados – Agendamento . . . . . . . . . . . . . . . . . . . . . 24
+3.6 Diagrama de Atividades – Fluxo de Agendamento . . . . . . . . . . . . . . 25
+3.7 Diagrama de Componentes – FarmaVet . . . . . . . . . . . . . . . . . . . . 26
+3.8 Arquitetura em Camadas do Sistema FarmaVet . . . . . . . . . . . . . . . 27
+3.9 Modelo de Classes de Projeto com Atributos e Métodos . . . . . . . . . . . 29
+3.10 Diagrama de Implantação – Vercel + Render + Docker Compose . . . . . . 32
+4
+LISTA DE TABELAS
+3.1 Descrição dos Requisitos Funcionais do FarmaVet . . . . . . . . . . . . . . 18
+3.2 Requisitos Não Funcionais do FarmaVet . . . . . . . . . . . . . . . . . . . 19
+5
+PROPOSTA DE TRABALHO
+1.1 Tema do Trabalho
+Desenvolvimento de um sistema web integrado para gestão operacional de pet shops e
+clínicas veterinárias de pequeno e médio porte, denominadoFarmaVet.
+1.2 Contextualização
+Omercadodeserviçosveterináriosepetshopbrasileiroapresentacrescimentoexpressivo
+nos últimos anos. Pequenos estabelecimentos que oferecem banho, tosa, consultas e vacinas
+para animais de estimação ainda dependem de anotações manuais, planilhas e contatos
+telefônicos para organizar sua agenda e controlar o atendimento. Esse cenário gera perda
+de informação, conflitos de horário, dificuldade de acompanhamento financeiro e ausência
+de histórico confiável dos animais atendidos.
+O sistema FarmaVet surge neste contexto como uma solução web acessível, desenvolvida
+especificamente para as necessidades operacionais da empresaFarmaVet, gerida por Cyro
+Facundo Chaves, localizada na cidade de Boa Viagem – CE.
+1.3 A Situação-Problema
+A FarmaVet atualmente opera sem um sistema informatizado. Os agendamentos são
+feitos por telefone e anotados em cadernos ou planilhas desconectadas. Isso resulta em:
+•Conflitos de horário entre funcionários, gerando atendimentos sobrepostos;
+•Ausência de histórico de atendimentos por animal, dificultando o acompanhamento
+clínico;
+•Impossibilidade de acompanhar o faturamento por período ou por tipo de serviço;
+6
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+•Dificuldade de comunicação com clientes sobre confirmação e lembretes de consultas;
+•Dependência total da memória e anotações pessoais dos funcionários.
+1.4 Breve Descrição da Solução
+O FarmaVet é uma aplicação web com três perfis de acesso (cliente, funcionário e
+administrador) que permite: cadastro de clientes e seus pets, agendamento de serviços
+com verificação automática de disponibilidade, registro de pagamentos em dinheiro, PIX e
+cartão, geração de relatórios gerenciais em PDF e Excel, envio automático de notificações
+por e-mail e visualização de histórico de atendimentos. O sistema é acessível por navegador,
+sem necessidade de instalação, e está implantado em nuvem com HTTPS.
+7
+CONTEXTUALIZAÇÃO DO PROBLEMA
+2.1 Premissas e Restrições do Projeto
+Premissas:
+•A empresa possui conexão estável à internet;
+•Os funcionários possuem dispositivos (computador ou smartphone) com navegador
+atualizado;
+•O proprietário (administrador) irá cadastrar os serviços e funcionários antes da
+entrada em produção;
+•Os clientes serão cadastrados na primeira visita ou pelo próprio sistema via auto-
+cadastro.
+Restrições:
+•Prazo de desenvolvimento: 1 semestre letivo;
+•Orçamento: projeto acadêmico sem custo para o cliente, exceto eventuais planos de
+hospedagem;
+•Tecnologia: aplicação web (sem aplicativo nativo);
+•Pagamentos: apenas registro local (sem gateway de pagamento externo, por decisão
+do cliente);
+•Equipe: 5 desenvolvedores acadêmicos com dedicação parcial.
+8
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+2.2 Caracterização da Empresa
+2.2.1 Histórico da empresa
+A FarmaVet é um pet shop e clínica veterinária de pequeno porte localizado em Boa
+Viagem – CE, administrado por Cyro Facundo Chaves. O estabelecimento atende a
+cidade de Boa Viagem e municípios vizinhos, oferecendo serviços de saúde e estética para
+animais de estimação. O crescimento da demanda por atendimento veterinário e de estética
+animal na região motivou o proprietário a buscar uma solução tecnológica para organizar
+e profissionalizar a operação.
+2.2.2 Atividades da empresa
+A FarmaVet oferece os seguintes serviços:
+ServiçoDescrição
+Banho Higienização completa do animal
+TosaCorte e modelagem do pelo
+Banho e Tosa Serviço combinado com equipe de tosador e atendente
+Corte de UnhasProcedimento rápido de manutenção
+Banho Terapêutico Banho com produtos medicinais específicos
+Atendimento VeterinárioConsulta clínica geral com veterinário
+Vacinação Aplicação de vacinas e vermífugos
+ConsultaAvaliação e acompanhamento de saúde
+Emergência Atendimento urgente fora do horário regular
+2.2.3 Mercado consumidor
+O mercado consumidor da FarmaVet é composto principalmente por tutores de cães e
+gatos residentes em Boa Viagem e municípios vizinhos. O perfil predominante é de famílias
+que tratam seus animais como membros da família e buscam serviços de qualidade com
+atendimento personalizado.
+9
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+2.2.4 Concorrência
+A concorrência local é composta por outros pet shops da cidade de Boa Viagem, em
+geral de pequeno porte e com operação informal. Não há redes de franquia ou grandes
+estabelecimentos veterinários na cidade. A diferenciação da FarmaVet está na qualidade
+do atendimento e na adoção de tecnologia para melhorar a experiência do cliente.
+2.2.5 Organograma
+A estrutura organizacional da FarmaVet é composta por:
+•Administrador / Proprietário– Cyro Facundo Chaves: gestão geral, financeiro e
+relatórios;
+•Gerente: supervisão operacional e controle de agenda;
+•Veterinário(s): atendimento clínico, consultas e vacinação;
+•Tosador(es): banho, tosa e estética;
+•Atendente(s): recepção, cadastro de clientes e suporte ao agendamento.
+2.3 Proposta de Trabalho
+2.3.1 Método do trabalho
+O projeto foi desenvolvido com metodologia ágilScrum, com sprints quinzenais,
+reuniões de planejamento e retrospectiva. A equipe utilizou o GitHub Projects para gestão
+das tarefas e o Discord para comunicação diária.
+Os papéis foram distribuídos da seguinte forma:
+•Product Owner (PO):Andrey Victor – priorização do backlog e comunicação
+com o cliente;
+•Scrum Master (SM):Larissa Vieira – facilitação das cerimônias e remoção de
+impedimentos;
+•Desenvolvedor Frontend:Jhonata Vieira;
+•Desenvolvedor Backend:Matheus Cavalcante;
+10
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+•QA / Testador:Michel Júnior.
+2.3.2 Previsão e alocação de recursos (humanos e materiais)
+Recursos Humanos
+FunçãoHoras Totais Custo/hora (R$) Custo Total (R$)
+Gerente de Projeto / PO 80 120 9.600
+Analista / Scrum Master80 80 6.400
+Desenvolvedor Backend 300 60 18.000
+Desenvolvedor Frontend280 55 15.400
+Testador / QA 120 40 4.800
+Total 860–54.200
+Equipamentos de Hardware
+Item Quantidade Custo Total (R$)
+Computadores de desenvolvimento 5 15.000
+Monitores adicionais 5 3.000
+Roteador e switch 1 600
+Total–18.600
+11
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+Softwares e Licenças
+Software Qtd. Custo Total (R$)
+VS Code (IDE – gratuito) 5 0
+Git / GitHub (gratuito para projetos públicos) 1 0
+PostgreSQL (open source) 1 0
+Docker Desktop (gratuito para uso educacional) 5 0
+Vercel (plano gratuito – frontend) 1 0
+Render (plano gratuito – backend) 1 0
+Figma (plano gratuito) 5 0
+SendGrid (plano gratuito – e-mail) 1 0
+Total–0
+2.3.3 Previsão orçamentária
+Categoria Custo Total (R$)
+Recursos humanos 54.200
+Infraestrutura / hardware 18.600
+Softwares e licenças 0
+Hospedagem em nuvem (plano gratuito) 0
+Total 72.800
+2.4 O Sistema Atual
+O sistema atual da FarmaVet é baseado inteiramente em processos manuais e informais.
+2.4.1 Funcionamento do sistema atual
+Os agendamentos são recebidos por telefone ou pessoalmente e anotados em um
+caderno de agendas físico por data. O controle de quais animais foram atendidos, por qual
+funcionário e com qual valor pago é feito de memória ou em planilhas Excel desconectadas.
+Não há registro sistemático do histórico de atendimentos de cada animal. Os pagamentos
+são registrados em caderninhos de caixa, sem conciliação automatizada. As notificações
+12
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+de consultas e retornos são feitas por ligação telefônica ou WhatsApp pessoal, sem
+padronização.
+2.4.2 Problemas do sistema atual
+•Conflitos de horário:sem verificação automática, dois clientes podem ser marcados
+para o mesmo horário com o mesmo funcionário;
+•Ausência de histórico:não há registro estruturado de atendimentos anteriores de
+cada animal, dificultando o acompanhamento clínico;
+•Perda de informações:anotações em papel se perdem; funcionários que saem
+levam o conhecimento consigo;
+•Sem relatórios:impossível saber o faturamento por serviço, por período ou por
+funcionário sem retrabalho manual;
+•Comunicação ineficiente:lembretes de consulta dependem da memória do aten-
+dente, gerando faltas e perda de receita;
+•Sem controle de acesso:qualquer pessoa com acesso à planilha pode ver ou
+alterar dados de qualquer cliente.
+13
+A SOLUÇÃO
+3.1 O Sistema Proposto
+O FarmaVet é um sistema web integrado que automatiza o ciclo completo de gestão
+operacional de um pet shop e clínica veterinária: do agendamento ao pagamento, do
+cadastro do pet ao relatório gerencial.
+3.1.1 Justificativas para o novo sistema
+•Eliminar conflitos de horário com verificação automática de disponibilidade por
+funcionário e por tipo de serviço;
+•Criar um histórico permanente e consultável de todos os atendimentos por animal;
+•Profissionalizar a comunicação com os clientes via notificações automáticas por
+e-mail;
+•Permitir ao administrador acompanhar o faturamento e o desempenho operacional
+em tempo real, sem retrabalho;
+•Garantir controle de acesso por perfil, protegendo dados sensíveis dos clientes (con-
+formidade com LGPD).
+3.1.2 Situação desejada: objetivos gerais e específicos
+A situação desejada é que todos os processos operacionais da FarmaVet sejam mediados
+pelo sistema: nenhum agendamento feito fora do FarmaVet, nenhum pagamento sem
+registro digital, nenhum atendimento sem histórico gerado automaticamente.
+14
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+3.2 Objetivo Geral
+Desenvolver um sistema web para gestão integrada de pet shop e clínica veterinária,
+cobrindo agendamentos, cadastros, pagamentos, notificações e relatórios, com controle de
+acesso por perfil de usuário.
+3.2.1 Objetivos Específicos
+1. Implementar cadastro de clientes, pets, funcionários e serviços com validações;
+2.Desenvolver módulo de agendamento com verificação automática de disponibilidade
+por funcionário, considerando expediente e porte do animal;
+3.Implementar três fluxos de pagamento local: dinheiro (com troco), PIX (QR Code)
+e cartão;
+4.Criar sistema de notificações assíncronas por e-mail (confirmação, lembrete D-1,
+cancelamento e conclusão) via Celery + SendGrid;
+5. Desenvolver módulo de relatórios gerenciais em PDF, Excel e CSV;
+6.Garantir conformidade com LGPD via soft delete, log de auditoria e controle de
+retenção;
+7. Implantar o sistema em nuvem com HTTPS e deploy automatizado via GitHub.
+3.2.2 Soluções alternativas
+Foram avaliadas as seguintes alternativas antes da decisão pelo desenvolvimento próprio:
+15
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+AlternativaVantagens Desvantagens
+ERP genérico (ex: Pet Anjos, PetSoft) Pronto para uso
+imediatoAlto custo mensal,
+sempersonalização
+para FarmaVet, de-
+pendênciadeforne-
+cedor
+Planilhas avançadas (Google Sheets) Custo zero, famili-
+aridadeSem controle de
+acesso, sem agen-
+damento automá-
+tico, sem notifica-
+ções
+Desenvolvimento próprio (escolhido) Personalização to-
+tal, sem custo de li-
+cença, controle do
+códigoMaior prazo de de-
+senvolvimento
+3.3 Solução Escolhida
+Desenvolvimento de sistema web próprio, com backend Django REST e frontend React,
+hospedado em nuvem (Vercel + Render), com código-fonte versionado no GitHub.
+3.3.1 Escopo da solução
+O sistema FarmaVet inclui:
+•Módulo de autenticação (JWT com blacklist, recuperação de senha, perfis por role);
+•Módulo de cadastros (clientes, pets, funcionários, serviços, formas de pagamento);
+•Módulo de agendamentos (criação, cancelamento, reagendamento, conclusão);
+•Módulo de pagamentos (dinheiro, PIX, cartão);
+•Módulo de notificações (Celery + SendGrid);
+•Módulo de histórico de atendimentos;
+16
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+•Módulo de relatórios gerenciais (PDF, Excel, CSV);
+•Dashboard administrativo com indicadores operacionais;
+•55 telas frontend distribuídas em 3 perfis de acesso.
+17
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+3.3.2 Lista de Requisitos do sistema
+Tabela 3.1: Descrição dos Requisitos Funcionais do FarmaVet
+IDTipo Descrição
+RF01Funcional Permitir cadastro de usuário (cliente) com e-mail e senha
+RF02Funcional Autenticar usuários com JWT; redirecionar por perfil (cliente/fun-
+cionário/admin)
+RF03Funcional Permitir recuperação e redefinição de senha via e-mail
+RF04Funcional CRUD de clientes com CPF, endereço, CEP e ponto de referência
+RF05Funcional CRUD de pets com cálculo automático de porte pelo peso
+RF06Funcional CRUD de funcionários com cargo (atendente/tosador/veterinário/-
+gerente) e horários de trabalho
+RF07Funcional CRUD de serviços com tipo, preço e duração diferenciada por porte
+RF08Funcional Criar agendamento com verificação automática de disponibilidade
+RF09Funcional Cancelar e reagendar agendamentos com validação de status
+RF10Funcional Permitir funcionário iniciar e concluir atendimento; gerar histórico
+automaticamente
+RF11Funcional Registrar pagamento em dinheiro (com troco), PIX (QR Code) e
+cartão
+RF12Funcional Enviar notificações automáticas por e-mail (confirmação, lembrete
+D-1, cancelamento, conclusão)
+RF13Funcional Exibir histórico de atendimentos por pet e por cliente
+RF14Funcional Gerar relatórios gerenciais (serviços, faturamento, clientes, funcio-
+nários, agendamentos) em PDF, Excel e CSV
+RF15Funcional Dashboard com indicadores: agendamentos do dia, faturamento do
+período, clientes ativos
+RF16Funcional Consultar slots de horário disponíveis por data e serviço
+RF17Funcional Permitir ao cliente visualizar e gerenciar seus agendamentos pelo
+perfil web
+RF18Funcional Documentar automaticamente a API via Swagger/OpenAPI
+18
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+Tabela 3.2: Requisitos Não Funcionais do FarmaVet
+IDTipo Descrição
+RNF01 Segurança JWT com blacklist após logout; tokens renovados automa-
+ticamente
+RNF02Segurança Rate limiting: 5 tentativas/min no login, 10/hora no regis-
+tro
+RNF03 Privacidade Soft delete em todos os modelos; retenção de dados por 5
+anos (LGPD)
+RNF04Segurança HTTPS obrigatório em produção; HSTS de 1 ano
+RNF05 Auditoria Log de auditoria dedicado para ações sensíveis
+RNF06Desempenho Eliminação de N+1 queries via select_related e pre-
+fetch_related
+RNF07 Usabilidade Interface responsiva para mobile, tablet e desktop; modo
+escuro
+RNF08Portabilidade Sistema containerizado com Docker Compose (5 serviços)
+RNF09 Qualidade 494 casos de teste automatizados (pytest + Vitest)
+RNF10Monitoramento Sentry SDK para captura de erros em produção
+RNF11 Documentação API documentada automaticamente via drf-spectacular
+(Swagger)
+19
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+3.3.3 Diagrama de Casos de Uso
+Figura 3.1: Diagrama de Casos de Uso – FarmaVet (visão geral dos três perfis)
+Os atores identificados são:Cliente(usuário final que agenda serviços),Funcionário
+(atendente, tosador, veterinário ou gerente que executa atendimentos) eAdministrador
+(gestão completa do sistema). Os principais casos de uso são: agendar serviço, cancelar/-
+20
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+reagendar, iniciar/concluir atendimento, registrar pagamento, gerar relatório e gerenciar
+cadastros.
+3.3.4 Especificações textuais dos casos de uso
+UC-01 – Agendar Serviço
+Ator:Cliente
+Pré-condições:Usuário autenticado como CLIENTE; pelo menos um pet e um serviço
+cadastrado.
+Fluxo principal:(1) Cliente seleciona pet, serviço e data desejada; (2) sistema consulta
+slots disponíveis; (3) cliente escolhe horário; (4) cliente seleciona forma de pagamento e
+confirma; (5) sistema registra agendamento e enfileira notificação de confirmação.
+Fluxo alternativo:horário indisponível – sistema exibe mensagem e retorna ao passo 2.
+Pós-condições:Agendamento com status AGENDADO; e-mail de confirmação enviado.
+UC-02 – Concluir Atendimento
+Ator:Funcionário
+Pré-condições:Agendamento com status EM_ANDAMENTO; funcionário com cargo
+compatível com o serviço.
+Fluxo principal:(1) Funcionário marca atendimento como concluído; (2) sistema atualiza
+status para CONCLUIDO; (3) sistema cria HistoricoAtendimento automaticamente; (4)
+sistema enfileira notificação de conclusão.
+Pós-condições:Status CONCLUIDO; histórico imutável registrado; notificação enviada.
+21
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+3.3.5 Modelo conceitual de classes
+Figura 3.2: Diagrama de Classes do Domínio – FarmaVet
+As classes principais são: Usuario,Cliente,Funcionario ,HorarioTrabalho ,Pet,
+Servico,FormaPagamento ,Agendamento ,TransacaoPagamento ,HistoricoAtendimento ,
+NotificacaoeRelatorio.
+3.3.6 Modelo conceitual de dados
+As entidades principais e seus relacionamentos:
+•Usuario←1:1→ClienteouFuncionario;
+•Cliente←1:N→Pet;
+•Agendamentoassocia: Cliente, Pet, Servico, Funcionario e FormaPagamento (todos
+N:1);
+•Agendamento←1:1→TransacaoPagamento;
+•Agendamento←1:1→HistoricoAtendimento;
+22
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+•Agendamento←1:N→Notificacao.
+3.4 Solução Tecnológica
+3.4.1 Diagrama de Sequência
+Figura 3.3: Diagrama de Sequência – Agendamento de Serviço
+O fluxo principal de agendamento envolve: Cliente →Frontend (httpClient) →API
+Gateway (JWT + DRF) →AgendamentoService (verificação de disponibilidade + cálculo
+de duração real)→Banco de Dados (persistência)→Celery (notificação assíncrona).
+3.4.2 Projeto de Interfaces
+O sistema possui 55 telas distribuídas em três layouts independentes: ClienteLayout ,
+FuncionarioLayout eAdminLayout . As principais telas são: Login, Cadastro, Dashbo-
+ard (por perfil), Pets, Novo Agendamento, Meus Agendamentos, Histórico, Gerenciar
+Funcionários, Serviços e Relatórios.
+23
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+Figura 3.4: Tela de Login – FarmaVet
+3.4.3 Diagrama de Estados
+O modeloAgendamentopossui 6 estados:
+Figura 3.5: Diagrama de Estados – Agendamento
+AGENDADO→CONFIRMADO→EM_ANDAMENTO →CONCLUIDO. Transições
+alternativas: qualquer estado ativo →CANCELADO; AGENDADO ou CONFIRMADO
+→NAO_COMPARECEU.
+24
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+3.4.4 Diagrama de Atividades
+Figura 3.6: Diagrama de Atividades – Fluxo de Agendamento
+Fluxo: Login→Selecionar pet→Escolher serviço→Consultar horários →[Disponí-
+vel?]→Confirmar→Registrar→Notificar.
+25
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+3.4.5 Diagrama de Componentes
+Figura 3.7: Diagrama de Componentes – FarmaVet
+Os componentes principais são:Frontend SPA(React + Axios + JWT Interceptor),
+API Gateway(DRF + SimpleJWT + Swagger),Service Layer(AgendamentoService,
+PagamentoService, RelatorioService, NotificacaoService),Banco de Dados(PostgreSQL
+15),Cache/Broker(Redis 7) eWorker Assíncrono(Celery).
+3.4.6 Descrição da Arquitetura do Sistema
+O FarmaVet adota arquiteturacliente-servidor em três camadas (3-tier):
+1.Camada de Apresentação:SPA React 18 com TypeScript, Vite e Tailwind CSS.
+Acessível via navegador sem instalação. Três layouts independentes por perfil.
+2.Camada de Aplicação:API REST com Django 4.2 + DRF 3.14. Organizada em
+12 apps com Service Layer e Repository Pattern. Autenticação JWT.
+26
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+3.Camada de Dados:PostgreSQL 15 (13 tabelas) + Redis 7 (cache e broker).
+Figura 3.8: Arquitetura em Camadas do Sistema FarmaVet
+27
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+Justificativa para a Arquitetura
+A separação em três camadas foi escolhida porque: (1) permite que o frontend e o
+backend evoluam independentemente; (2) a API REST pode ser consumida por futuros
+clientes mobile sem alteração no backend; (3) o Service Layer centraliza as regras de
+negócio complexas (verificação de disponibilidade, cálculo de duração real), facilitando
+testes e manutenção.
+Padrão de Software Utilizado
+PadrãoAplicação no FarmaVet
+Service Layer Regras de negócio em services.py por app (Agendamento-
+Service etc.)
+Repository PatternAcesso ao banco encapsulado emrepositories.py
+MVC via DRF Models (ORM), ViewSets (controllers), Serializers (validação)
+Observer Django Signals para criação automática de histórico e notifica-
+ções
+Strategy Três estratégias de pagamento (dinheiro, PIX, cartão) inter-
+cambiáveis
+Soft DeleteNenhum registro deletado fisicamente (conformidade LGPD)
+Context API Estado global de autenticação e tema no frontend React
+Guard RoutePrivateRoute protege rotas por role antes de renderizar
+28
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+3.4.7 Modelo de classes de Projeto
+Figura 3.9: Modelo de Classes de Projeto com Atributos e Métodos
+As principais classes com seus métodos relevantes:
+•Agendamento :pode_cancelar() ,pode_iniciar() ,pode_concluir() ,data_hora_fim ,
+clean(),save();
+•Pet:save()(recalcula porte pelo peso),total_atendimentos;
+•AgendamentoService :criar(),cancelar() ,reagendar() ,_funcionario_livre_no_slot() ,
+_obter_equipe_banho_tosa_livre();
+•PagamentoService:processar_dinheiro(),gerar_pix(),processar_cartao();
+•TransacaoPagamento:calcular_troco().
+3.4.8 Modelo Físico de dados
+Projeto de Tabelas e Arquivos
+O banco de dados PostgreSQL 15 possui 13 tabelas principais:
+29
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+TabelaPrincipais colunas
+usuarios id, email (unique), nome, telefone, foto, is_active
+clientes id, id_usuario (FK/unique), cpf (unique), endereco,
+ponto_referencia, cidade, cep
+funcionarios id, id_usuario (FK/unique), cargo
+horarios_trabalhoid, id_funcionario (FK), dia_semana, hora_inicio, hora_fim
+pets id, id_cliente (FK), nome, especie, raca, peso, porte, idade
+servicos id, tipo, descricao, preco, duracao_minutos, dura-
+cao_medio_grande
+formas_pagamento id, nome (unique), tipo
+agendamentos id, id_cliente, id_pet, id_servico, id_funcionario,
+id_forma_pagamento (FKs), data_hora, status, dura-
+cao_real, status_pagamento, valor_pago
+transacoes_pagamento id, id_agendamento (FK/unique), id_forma_pagamento (FK),
+valor, status, troco, pix_qrcode, pix_codigo, numero_transacao,
+bandeira_cartao
+historico_atendimentos id, id_agendamento (FK/unique), id_pet (FK),
+data_atendimento, tipo_servico, valor_pago
+notificacoes id, id_agendamento (FK), tipo, canal, enviada, lida, tentativas
+relatorios id, id_administrador (FK), tipo, formato, data_geracao, arquivo
+django_groups Grupos de permissão: CLIENTE, FUNCIONARIO, ADMINIS-
+TRADOR
+Scripts de geração do banco e suas tabelas
+O banco de dados é gerenciado exclusivamente peloDjango ORMvia 25 migrations.
+A criação das tabelas é executada automaticamente pelo comando:
+Listing 3.1: Execução das migrations Django
+1python manage .py migrate
+2# Ou via Docker :
+3dockerexecmypet_web python manage .py migrate
+As migrations estão organizadas por app e cobrem toda a evolução do schema: autenticação
+30
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+(5), agendamentos (4), funcionários (5), serviços (3), clientes (2) e demais apps (1 cada),
+totalizando 25 migrations.
+31
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+3.4.9 Ambiente tecnológico do sistema
+Ambiente Físico (diagrama de implantação)
+Figura 3.10: Diagrama de Implantação – Vercel + Render + Docker Compose
+32
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+Em produção:Frontendhospedado na Vercel (CDN global, HTTPS automático);
+Backendhospedado no Render (Docker, PostgreSQL gerenciado, HTTPS automático).
+Em desenvolvimento local: Docker Compose com 5 serviços ( mypet_web ,mypet_postgres ,
+mypet_redis,mypet_celery_worker,mypet_celery_beat).
+URLs de acesso em produção:
+Frontend: https://mypet-frontend-p6cdbcvcv-matheusthayna082-7130s-proje
+cts.vercel.app/login
+Backend API:https://mypet-backend2.onrender.com
+Documentação Swagger:https://mypet-backend2.onrender.com/swagger/
+Justificativa da escolha da linguagem de programação
+Backend – Python 3.11 com Django 4.2:Python foi escolhido pela produtividade
+no desenvolvimento, vasta comunidade, excelente ecossistema para APIs REST (DRF),
+suporte nativo a assincronismo via Celery e ferramentas maduras de qualidade de código
+(Black, Flake8, Bandit, pytest). O Django oferece ORM robusto, sistema de migrations
+automáticas e administração out-of-the-box.
+Frontend – TypeScript 5.7 com React 18:TypeScript adiciona tipagem estática
+ao JavaScript, eliminando uma classe inteira de erros em tempo de compilação. React
+18 com hooks e Context API permite gerenciamento de estado previsível. O Vite 6.0
+oferece HMR instantâneo em desenvolvimento e builds otimizados com code splitting em
+produção.
+Justificativa da escolha do SGBD
+PostgreSQL 15foi escolhido por: (1) suporte completo a transações ACID, garantindo
+integridade nos agendamentos simultâneos; (2) índices compostos para consultas eficientes
+por data/status/funcionário; (3) tipo TIMESTAMPTZ para armazenar datas com fuso horário,
+evitando bugs de timezone; (4) open source sem custo de licença; (5) suporte nativo no
+Django ORM e nas plataformas de cloud (Render, AWS RDS, Railway).
+33
+TESTES DO SISTEMA
+4.1 Estratégia e Tipos de Teste
+O sistema FarmaVet foi validado por uma suíte abrangente de testes automatizados,
+cobrindo backend e frontend com 494 casos de teste no total. A estratégia adotada combina
+testes unitários, de integração e de segurança, executáveis via linha de comando ou dentro
+do container Docker.
+TipoFerramenta Cobertura
+Unitário (backend) pytest + pytest-django Models, services, serializers, vi-
+ews por app
+Segurança (backend)pytest (suite dedicada) IDOR, autorizaçãorotura, SQL
+injection, XSS, hash de senha
+Análise estática Bandit Vulnerabilidades conhecidas no
+código Python
+Unitário (frontend)Vitest + Testing Library Componentes, contextos, pági-
+nas, serviços
+Integração (frontend) Vitest + MSW Fluxos de navegação, guards de
+rota, chamadas à API
+4.2 Casos de Teste por Funcionalidade
+IDFuncionalidade Condição testada Status
+CT-
+A01Autenticação Login com credenciais válidas
+retorna tokens JWTAprovado
+34
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+IDFuncionalidade Condição Status
+CT-
+A02Autenticação Login com senha errada re-
+torna 401Aprovado
+CT-
+A03Autenticação Login sem body retorna 400 Aprovado
+CT-
+A04Autenticação Token inválido rejeitado em
+rota protegidaAprovado
+CT-
+A05Autenticação Refresh token válido renova ac-
+cess tokenAprovado
+CT-
+A06Autenticação Senha não retornada pela API Aprovado
+CT-
+A07Autenticação Senha armazenada como hash
+pbkdf2_sha256Aprovado
+CT-
+AG01Agendamentos Criação com dados válidos re-
+torna 201Aprovado
+CT-
+AG02Agendamentos Agendamento no passado re-
+torna 400Aprovado
+CT-
+AG03Agendamentos Pet de outro cliente rejeitado
+com 400Aprovado
+CT-
+AG04Agendamentos Cancelamento válido atualiza
+statusAprovado
+CT-
+AG05Agendamentos Isolamento: cliente não vê
+agendamentos alheiosAprovado
+CT-
+S01Segurança Cliente bloqueado no dashbo-
+ard admin (403)Aprovado
+CT-
+S02Segurança SQLinjectionviafiltroretorna
+lista vaziaAprovado
+CT-
+S03Segurança XSS no nome do pet não exe-
+cutado (Content-Type JSON)Aprovado
+CT-
+S04Segurança Rate limiting: 6ªrequisição
+retorna 429Aprovado
+CT-
+P01Pets Porte calculado automatica-
+mente pelo pesoAprovado
+35
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+IDFuncionalidade Condição Status
+CT-
+P02Pets PATCH de peso recalcula
+porte corretamenteAprovado
+CT-
+PG01Pagamentos Dinheiro: troco calculado cor-
+retamenteAprovado
+CT-
+PG02Pagamentos PIX: QR Code e código gera-
+dosAprovado
+CT-
+PG03Pagamentos Cartão: NSU e bandeira regis-
+tradosAprovado
+4.3 Ferramentas de Teste
+FerramentaVersão Função
+pytest 7.4.3 Framework backend com marcadores por módulo
+pytest-django4.7.0 Integração Django, fixtures de banco de dados
+pytest-cov 4.1.0 Relatório de cobertura (HTML + terminal)
+factory-boy3.3.0 Geração de objetos de teste com Faker
+Vitest 4.1 Framework de testes frontend (compatível com Vite)
+Testing Library– Testes orientados ao comportamento do usuário
+MSW 2.12 Mock de requisições HTTP para testes isolados
+Bandit1.7.7 Análise estática de segurança do código Python
+4.4 Comandos de Execução
+Listing 4.1: Executar todos os testes
+1# Backend -- dentro da pasta backend /
+2pytest -v
+3pytest --cov = apps --cov - report = html --cov - report =term - missing
+4pytest -m security# apenas testes de seguranca
+5
+6# Frontend -- dentro da pasta frontend /
+7npm runtest:run
+36
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+8npm runtest:run -- -- reporter = verbose
+9npm runtest: coverage
+10
+11# Dentro do container Docker
+12dockerexecmypet_web pytest -v
+4.5 Resultados Gerais
+Conjunto de testesTotal Aprovados Falharam
+Backend (pytest) 51 51 0
+Frontend (Vitest)443 443 0
+Total geral 494 494 0
+37
+CONCLUSÕES
+5.1Reflexões e Comparação entre Objetivos Iniciais e Alcança-
+dos
+Todos os 7 objetivos específicos foram alcançados. O sistema FarmaVet foi implantado
+emproduçãocomHTTPS,autenticaçãoJWT,40+endpointsRESTdocumentados,55telas
+frontend, 494 testes passando e monitoramento ativo via Sentry. A única funcionalidade
+parcialmente limitada em produção é o envio assíncrono de e-mails via Celery, restrito
+pelo plano gratuito do Render, mas funcional no ambiente Docker local.
+5.2 Vantagens e Desvantagens do Sistema
+Vantagens:
+•Eliminação de conflitos de horário com verificação automática em tempo real;
+•Histórico permanente de atendimentos por animal, melhorando o acompanhamento
+clínico;
+•Notificações automáticas reduzem faltas e retrabalho de comunicação;
+•Relatórios gerenciais em múltiplos formatos substituem planilhas manuais;
+•Sistema containerizado: ambiente reproduzível em qualquer máquina;
+•Código 100% open source, sem custo de licença;
+•Conformidade com LGPD via soft delete e log de auditoria.
+Desvantagens:
+•Curva de aprendizado inicial para os funcionários;
+38
+Instituto Federal do Ceará – Campus Boa Viagem Projeto Integrador – FarmaVet
+•Celery e Redis indisponíveis no plano gratuito do Render (notificações assíncronas
+em produção);
+•Cold start lento no Render (primeiro acesso após inatividade);
+•Sem gateway de pagamento externo (decisão do cliente – pagamentos apenas regis-
+trados localmente).
+5.3 Trabalhos Futuros
+•Ativar Celery e Redis no Render com upgrade para plano pago, habilitando notifica-
+ções assíncronas em produção;
+•Integrar gateway de pagamento externo (Mercado Pago ou PagSeguro) para paga-
+mentos online;
+•Desenvolver aplicativo mobile (React Native) para acesso do cliente via smartphone;
+•Implementar pipeline CI/CD completo com GitHub Actions para testes automáticos
+antes de cada deploy;
+•Adicionar módulo de prontuário veterinário eletrônico para registro de histórico
+clínico detalhado;
+•Configurar domínio personalizado (farmavet.com.br) com SSL e DNS próprio.
+39

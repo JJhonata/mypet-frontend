@@ -22,15 +22,21 @@ export function RedefinirSenhaPage() {
     // Link inválido (sem uid ou token na URL)
     if (!uid || !token) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-emerald-50 to-cyan-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800">
+            <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 p-4">
                 <div className="fixed top-4 right-4 z-50">
                     <DarkModeToggle />
                 </div>
-                <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 shadow p-10 text-center max-w-sm">
-                    <p className="text-red-600 dark:text-red-400 font-semibold mb-4">Link inválido ou expirado.</p>
+                <div className="bg-white dark:bg-slate-900 rounded-[32px] border border-slate-200 dark:border-slate-800 shadow-2xl p-10 text-center max-w-md w-full animate-slide-up">
+                    <div className="mx-auto h-20 w-20 rounded-full bg-red-50 dark:bg-red-900/20 flex items-center justify-center mb-6">
+                        <Lock className="h-10 w-10 text-red-600 dark:text-red-400" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">Link Inválido</h2>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                        Este link de recuperação de senha parece estar incompleto ou já expirou por questões de segurança.
+                    </p>
                     <button
                         onClick={() => navigate("/login")}
-                        className="text-sm text-emerald-700 dark:text-emerald-400 hover:underline"
+                        className="figma-btn w-full py-3.5"
                     >
                         Voltar para o login
                     </button>
@@ -113,9 +119,9 @@ export function RedefinirSenhaPage() {
                     <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                         {/* Nova senha */}
                         <div className="relative">
-                            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-emerald-700 dark:text-emerald-300" />
+                            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-600 dark:text-slate-300" />
                             <input
-                                className="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-10 py-3 text-sm text-slate-900 dark:text-slate-100 outline-none transition-all focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100 dark:focus:ring-emerald-900/40"
+                                className="figma-input-white pl-10"
                                 type="password"
                                 value={senhaNova}
                                 onChange={(e) => setSenhaNova(e.target.value)}
@@ -127,9 +133,9 @@ export function RedefinirSenhaPage() {
 
                         {/* Confirmar senha */}
                         <div className="relative">
-                            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-emerald-700 dark:text-emerald-300" />
+                            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-600 dark:text-slate-300" />
                             <input
-                                className="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-10 py-3 text-sm text-slate-900 dark:text-slate-100 outline-none transition-all focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100 dark:focus:ring-emerald-900/40"
+                                className="figma-input-white pl-10"
                                 type="password"
                                 value={confirmarSenha}
                                 onChange={(e) => setConfirmarSenha(e.target.value)}
@@ -143,7 +149,7 @@ export function RedefinirSenhaPage() {
                         {sucesso && <StatusMessage type="success" message={sucesso} />}
 
                         <button
-                            className="w-full rounded-xl bg-emerald-700 text-white font-semibold py-3.5 transition-colors hover:bg-emerald-800 disabled:opacity-70"
+                            className="figma-btn w-full font-semibold py-3.5"
                             type="submit"
                             disabled={loading || !!sucesso}
                         >

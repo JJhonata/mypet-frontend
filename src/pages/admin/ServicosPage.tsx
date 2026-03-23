@@ -8,32 +8,27 @@ import { StatusMessage } from "../../components/ui/StatusMessage";
 const inputClass =
   "w-full rounded-lg bg-white px-4 py-3 text-sm text-slate-900 shadow border border-slate-200 outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500";
 
-const TIPOS_SERVICO = [
-  { value: "BANHO", label: "Banho" },
-  { value: "TOSA", label: "Tosa" },
-  { value: "BANHO_TOSA", label: "Banho e Tosa" },
-  { value: "CORTE_UNHAS", label: "Corte de Unhas" },
-  { value: "BANHO_TERAPEUTICO", label: "Banho Terapêutico" },
-  { value: "VETERINARIO", label: "Atendimento Veterinário" },
-  { value: "VACINA", label: "Vacinação" },
-  { value: "CONSULTA", label: "Consulta" },
-  { value: "EMERGENCIA", label: "Emergência" },
+const CARGOS_DISPONIVEIS = [
+  { value: "VETERINARIO", label: "Veterinário" },
+  { value: "TOSADOR", label: "Tosador" },
+  { value: "ATENDENTE", label: "Atendente" },
+  { value: "GERENTE", label: "Gerente" },
 ];
 
 type FormData = {
-  tipo: string;
+  nome: string;
   descricao: string;
   preco: string;
   duracao_minutos: string;
-  duracao_medio_grande: string;
+  cargos: string[];
 };
 
 const emptyForm: FormData = {
-  tipo: "BANHO",
+  nome: "",
   descricao: "",
   preco: "",
   duracao_minutos: "",
-  duracao_medio_grande: "",
+  cargos: [],
 };
 
 export function ServicosPage() {
@@ -72,11 +67,11 @@ export function ServicosPage() {
   function abrirEditar(s: Servico) {
     setEditingId(s.id);
     setForm({
-      tipo: s.tipo,
+      nome: s.nome,
       descricao: s.descricao ?? "",
       preco: String(s.preco),
       duracao_minutos: String(s.duracao_minutos),
-      duracao_medio_grande: s.duracao_medio_grande ? String(s.duracao_medio_grande) : "",
+      cargos: s.cargos ? s.cargos.map(c => c.cargo) : [],
     });
     setErro(null);
     setModalOpen(true);
@@ -91,12 +86,17 @@ export function ServicosPage() {
     setSalvando(true);
     setErro(null);
     try {
+      if (!form.nome || form.cargos.length === 0) {
+        setErro("Preencha nome e selecione ao menos um cargo.");
+        setSalvando(false);
+        return;
+      }
       const payload = {
-        tipo: form.tipo,
-        descricao: form.descricao || form.tipo,
+        nome: form.nome,
+        descricao: form.descricao || form.nome,
         preco: Number(form.preco.replace(",", ".")),
         duracao_minutos: Number(form.duracao_minutos),
-        duracao_medio_grande: form.duracao_medio_grande ? Number(form.duracao_medio_grande) : null,
+        cargos: form.cargos,
       };
 
       if (editingId) {
@@ -130,9 +130,6 @@ export function ServicosPage() {
       setErro("Erro ao excluir serviço. Verifique se não há agendamentos vinculados.");
     }
   }
-
-  const formatTipo = (tipo: string) =>
-    TIPOS_SERVICO.find((t) => t.value === tipo)?.label ?? tipo;
 
   return (
     <div className="pb-10">
@@ -171,7 +168,7 @@ export function ServicosPage() {
                   <th className="px-4 py-3 text-left font-semibold text-slate-700">Serviço</th>
                   <th className="px-4 py-3 text-right font-semibold text-slate-700">Preço (R$)</th>
                   <th className="px-4 py-3 text-right font-semibold text-slate-700">Duração (min)</th>
-                  <th className="px-4 py-3 text-right font-semibold text-slate-700 hidden sm:table-cell">Dur. Médio/Grande</th>
+                  <th className="px-4 py-3 text-left font-semibold text-slate-700 hidden sm:table-cell">Cargos</th>
                   <th className="px-4 py-3 text-right font-semibold text-slate-700">Ações</th>
                 </tr>
               </thead>
@@ -179,8 +176,8 @@ export function ServicosPage() {
                 {servicos.map((s) => (
                   <tr key={s.id} className="hover:bg-slate-50 transition-colors">
                     <td className="px-4 py-3">
-                      <p className="font-medium text-slate-900">{formatTipo(s.tipo)}</p>
-                      {s.descricao && s.descricao !== s.tipo && (
+                      <p className="font-medium text-slate-900">{s.nome}</p>
+                      {s.descricao && s.descricao !== s.nome && (
                         <p className="text-xs text-slate-500 mt-0.5 line-clamp-1">{s.descricao}</p>
                       )}
                     </td>
@@ -188,8 +185,10 @@ export function ServicosPage() {
                       R$ {Number(s.preco).toFixed(2).replace(".", ",")}
                     </td>
                     <td className="px-4 py-3 text-right text-slate-600">{s.duracao_minutos} min</td>
-                    <td className="px-4 py-3 text-right text-slate-600 hidden sm:table-cell">
-                      {s.duracao_medio_grande ? `${s.duracao_medio_grande} min` : "—"}
+                    <td className="px-4 py-3 text-left text-slate-600 hidden sm:table-cell text-xs">
+                      {s.cargos && s.cargos.length > 0
+                        ? s.cargos.map((c) => c.cargo_display).join(", ")
+                        : "Nenhum"}
                     </td>
                     <td className="px-4 py-3 text-right">
                       <div className="inline-flex gap-1">
@@ -233,20 +232,16 @@ export function ServicosPage() {
             <div className="space-y-3">
               <div>
                 <label className="mb-1 block text-xs sm:text-sm font-medium text-slate-700">
-                  Tipo de serviço
+                  Nome do Serviço
                 </label>
-                <select
+                <input
+                  type="text"
                   className={inputClass}
-                  value={form.tipo}
-                  onChange={(e) => setForm({ ...form, tipo: e.target.value })}
+                  value={form.nome}
+                  onChange={(e) => setForm({ ...form, nome: e.target.value })}
+                  placeholder="Ex: Banho e Tosa Completo"
                   disabled={!!editingId}
-                >
-                  {TIPOS_SERVICO.map((t) => (
-                    <option key={t.value} value={t.value}>
-                      {t.label}
-                    </option>
-                  ))}
-                </select>
+                />
               </div>
 
               <div>
@@ -292,17 +287,30 @@ export function ServicosPage() {
                   />
                 </div>
                 <div>
-                  <label className="mb-1 block text-xs sm:text-sm font-medium text-slate-700">
-                    Dur. Médio/Grande
+                  <label className="mb-1 block text-xs sm:text-sm font-medium text-slate-700 mb-2 mt-1 sm:mt-0">
+                    Cargos que realizam
                   </label>
-                  <input
-                    type="number"
-                    min="1"
-                    className={inputClass}
-                    value={form.duracao_medio_grande}
-                    onChange={(e) => setForm({ ...form, duracao_medio_grande: e.target.value })}
-                    placeholder="Opcional"
-                  />
+                  <div className="flex flex-col gap-2 max-h-32 overflow-y-auto border border-slate-200 rounded-lg p-3 bg-slate-50">
+                    {CARGOS_DISPONIVEIS.map((cargo) => (
+                      <label key={cargo.value} className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          className="rounded text-emerald-600 focus:ring-emerald-500"
+                          checked={form.cargos.includes(cargo.value)}
+                          onChange={(e) => {
+                            const isChecked = e.target.checked;
+                            setForm((prev) => {
+                              const newCargos = isChecked
+                                ? [...prev.cargos, cargo.value]
+                                : prev.cargos.filter((c) => c !== cargo.value);
+                              return { ...prev, cargos: newCargos };
+                            });
+                          }}
+                        />
+                        <span className="text-sm text-slate-700">{cargo.label}</span>
+                      </label>
+                    ))}
+                  </div>
                 </div>
               </div>
 

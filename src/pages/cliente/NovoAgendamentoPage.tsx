@@ -17,12 +17,11 @@ export function NovoAgendamentoPage() {
 
   const [pets, setPets] = useState<Pet[]>([]);
   const [petId, setPetId] = useState("");
-  const [tipoServico, setTipoServico] = useState("BANHO");
   const [pagamentoMomento, setPagamentoMomento] = useState("DEPOIS");
   const [data, setData] = useState("");
   const [horario, setHorario] = useState("");
   const [horariosDisponiveis, setHorariosDisponiveis] = useState<{ hora: string, data_hora: string, disponivel: boolean }[]>([]);
-  const [servicosDisponiveis, setServicosDisponiveis] = useState<{ id: number, tipo: string, tipo_display: string, preco: number }[]>([]);
+  const [servicosDisponiveis, setServicosDisponiveis] = useState<{ id: number, nome: string, preco: number }[]>([]);
   const [formasPagamento, setFormasPagamento] = useState<{ id: number, nome: string }[]>([]);
   const [formaPagamentoId, setFormaPagamentoId] = useState<number | null>(null);
   const [servicoSelecionadoId, setServicoSelecionadoId] = useState<number | null>(null);
@@ -46,7 +45,6 @@ export function NovoAgendamentoPage() {
       if (listaServicos.length > 0) {
         setServicosDisponiveis(listaServicos);
         setServicoSelecionadoId(listaServicos[0].id);
-        setTipoServico(listaServicos[0].tipo);
       }
 
       const formas = await api.listarFormasPagamento();
@@ -159,11 +157,12 @@ export function NovoAgendamentoPage() {
                   onChange={(e) => {
                     const serv = servicosDisponiveis.find((s) => s.id === Number(e.target.value));
                     setServicoSelecionadoId(serv?.id || null);
-                    setTipoServico(serv?.tipo || "BANHO");
                   }}
                 >
                   {servicosDisponiveis.map(serv => (
-                    <option key={serv.id} value={serv.id}>{serv.tipo_display} - R$ {serv.preco}</option>
+                    <option key={serv.id} value={serv.id}>
+                      {serv.nome || "Serviço"} — R$ {Number(serv.preco).toFixed(2).replace(".", ",")}
+                    </option>
                   ))}
                   {servicosDisponiveis.length === 0 && <option value="">Carregando...</option>}
                 </select>

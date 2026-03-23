@@ -76,12 +76,8 @@ export function CancelarAgendamentoPage() {
   }
 
   function formatarTipoServico(tipo: string) {
-    switch (tipo) {
-      case 'BANHO': return 'Banho';
-      case 'TOSA': return 'Tosa';
-      case 'VETERINARIO': return 'Consulta Veterinária';
-      default: return tipo;
-    }
+    if (!tipo) return "Serviço";
+    return tipo;
   }
 
   if (sucesso) {
@@ -150,41 +146,48 @@ export function CancelarAgendamentoPage() {
         {agendamento && (
           <>
             {/* Card do Agendamento */}
-            <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-5 mb-6">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="h-12 w-12 rounded-full bg-emerald-100 flex items-center justify-center">
+            <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm mb-6 animate-slide-up">
+              <div className="bg-slate-50 border-b border-slate-100 p-4 flex items-center gap-4">
+                <div className="h-12 w-12 rounded-xl bg-emerald-100 flex items-center justify-center shrink-0">
                   <Calendar className="h-6 w-6 text-emerald-700" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-semibold text-slate-900">
+                  <h2 className="text-lg font-bold text-slate-900 leading-tight">
                     {formatarTipoServico(agendamento.tipoServico)}
                   </h2>
-                  <p className="text-sm text-slate-600">
-                    {agendamento.pet?.nome}
+                  <p className="text-sm font-medium text-emerald-700">
+                    Agendamento Confirmado
                   </p>
                 </div>
               </div>
 
-              <div className="space-y-3">
-                <div className="flex items-center gap-3 text-slate-700">
-                  <Calendar className="h-5 w-5 text-emerald-700" />
-                  <span className="text-sm">
-                    {formatarData(agendamento.dataHora)}
-                  </span>
-                </div>
-                
-                <div className="flex items-center gap-3 text-slate-700">
-                  <Clock className="h-5 w-5 text-emerald-700" />
-                  <span className="text-sm">
-                    {formatarHora(agendamento.dataHora)}
-                  </span>
+              <div className="p-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Data e Hora</span>
+                    <div className="flex items-center gap-2 text-slate-700">
+                      <Calendar className="h-3.5 w-3.5 text-slate-400" />
+                      <span className="text-sm font-semibold">{formatarData(agendamento.dataHora)} às {formatarHora(agendamento.dataHora)}</span>
+                    </div>
+                  </div>
+                  <div className="space-y-1 text-right">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Pet</span>
+                    <div className="flex items-center justify-end gap-2 text-slate-700">
+                      <span className="text-sm font-semibold">{agendamento.pet?.nome}</span>
+                      <User className="h-3.5 w-3.5 text-slate-400" />
+                    </div>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-3 text-slate-700">
-                  <User className="h-5 w-5 text-emerald-700" />
-                  <span className="text-sm">
-                    {agendamento.pet?.especie} • {agendamento.pet?.raca}
-                  </span>
+                <div className="pt-3 border-t border-slate-100">
+                   <div className="flex items-center justify-between">
+                     <span className="text-xs text-slate-500">Profissional</span>
+                     <span className="text-sm font-medium text-slate-900">{agendamento.profissional?.nome || "A definir"}</span>
+                   </div>
+                   <div className="flex items-center justify-between mt-1">
+                     <span className="text-xs text-slate-500">Espécie</span>
+                     <span className="text-sm font-medium text-slate-900">{agendamento.pet?.especie} ({agendamento.pet?.raca})</span>
+                   </div>
                 </div>
               </div>
             </div>
@@ -196,10 +199,10 @@ export function CancelarAgendamentoPage() {
                   Motivo do cancelamento
                 </label>
                 <textarea
-                  className="figma-input min-h-[120px] resize-none"
+                  className="figma-input-white min-h-[140px] resize-none border-slate-200 focus:border-emerald-500 transition-all"
                   value={motivo}
                   onChange={(e) => setMotivo(e.target.value)}
-                  placeholder="Informe o motivo do cancelamento..."
+                  placeholder="Por favor, conte-nos o motivo do cancelamento..."
                   required
                 />
               </div>
@@ -217,8 +220,9 @@ export function CancelarAgendamentoPage() {
                 </button>
                 
                 <button
+                  type="button"
                   onClick={() => navigate(-1)}
-                  className="w-full py-3 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors font-medium"
+                  className="figma-btn-white w-full py-3"
                 >
                   Voltar
                 </button>

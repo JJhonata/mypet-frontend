@@ -58,11 +58,13 @@ export type Agendamento = {
   pagoEm?: string;
   codigoAutorizacao?: string;
   confirmadoPor?: string;
+  profissional?: { id: number; nome: string };
+  status_display?: string;
   observacoes?: string;
   pet?: Pet;
   nomePet?: string;
   nomeCliente?: string;
-  servico?: { id: number; tipo: string; tipo_display: string; preco: number; duracao_minutos: number };
+  servico?: { id: number; nome: string; preco: number; duracao_minutos: number };
 };
 
 export type FormaPagamentoOption = {
@@ -102,13 +104,12 @@ export type AuthenticatedUser = {
 
 export type Servico = {
   id: number;
-  tipo: string;
-  tipo_display: string;
+  nome: string;
   descricao: string;
   preco: number;
   duracao_minutos: number;
-  duracao_medio_grande?: number | null;
   ativo: boolean;
+  cargos?: { cargo: string; cargo_display: string }[];
 };
 
 export type Funcionario = {
@@ -204,7 +205,7 @@ function mapAgendamentoFromBackend(data: any): Agendamento {
     id: data.id,
     clienteId: data.cliente?.id ?? data.cliente ?? 0,
     petId: data.pet?.id ?? data.pet ?? 0,
-    tipoServico: data.servico?.tipo_display ?? data.servico?.tipo ?? data.servico_tipo ?? data.tipo_servico ?? '',
+    tipoServico: data.servico?.nome ?? data.servico_nome ?? data.tipo_servico ?? '',
     dataHora: data.data_hora ?? '',
     status: data.status ?? 'AGENDADO',
     observacoes: data.observacoes,
@@ -215,6 +216,11 @@ function mapAgendamentoFromBackend(data: any): Agendamento {
     statusPagamento: data.status_pagamento,
     formaPagamento: data.forma_pagamento?.tipo ?? data.forma_pagamento,
     valorPago: data.valor_pago != null ? Number(data.valor_pago) : undefined,
+    profissional: data.profissional ? {
+      id: data.profissional.id,
+      nome: data.profissional.usuario?.nome ?? data.profissional.nome ?? ''
+    } : undefined,
+    status_display: data.status_display
   };
 }
 
@@ -642,12 +648,12 @@ export const api = {
     return unwrapPaginated(res.data);
   },
 
-  async criarServico(dados: { tipo: string; descricao: string; preco: number; duracao_minutos: number; duracao_medio_grande?: number | null }): Promise<Servico> {
+  async criarServico(dados: { nome: string; descricao: string; preco: number; duracao_minutos: number; cargos: string[] }): Promise<Servico> {
     const res = await httpClient.post('/servicos/', dados);
     return res.data;
   },
 
-  async atualizarServico(id: number, dados: Partial<{ tipo: string; descricao: string; preco: number; duracao_minutos: number; duracao_medio_grande: number | null }>): Promise<Servico> {
+  async atualizarServico(id: number, dados: Partial<{ nome: string; descricao: string; preco: number; duracao_minutos: number; cargos: string[] }>): Promise<Servico> {
     const res = await httpClient.patch(`/servicos/${id}/`, dados);
     return res.data;
   },

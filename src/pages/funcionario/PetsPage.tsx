@@ -1,13 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
-import { Search, PawPrint } from "lucide-react";
+import { Search, PawPrint, Plus } from "lucide-react";
 import { api, Pet } from "../../services/api";
 import { TopBarTitle } from "../../components/mobile/TopBarTitle";
 import { LoadingSpinner } from "../../components/ui/LoadingSpinner";
 import { StatusMessage } from "../../components/ui/StatusMessage";
 import { useFuncionarioShell } from "./Layout";
+import { useNavigate } from "react-router-dom";
 
 export function FuncionarioPetsPage() {
   const { openMenu } = useFuncionarioShell();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState<string | null>(null);
   const [busca, setBusca] = useState("");
@@ -42,6 +44,20 @@ export function FuncionarioPetsPage() {
       <TopBarTitle title="Pets" onMenuClick={openMenu} />
 
       <div className="pt-6 space-y-4">
+        <div className="flex justify-between items-center mb-2 px-1">
+          <div>
+            <h1 className="text-lg font-bold text-slate-900 leading-tight">Pets</h1>
+            <p className="text-xs font-medium text-slate-500">Listagem geral de animais</p>
+          </div>
+          <button
+            type="button"
+            onClick={() => navigate("/funcionario/pets/novo")}
+            className="figma-btn py-2.5 px-4 text-xs flex items-center gap-2 shadow-md"
+          >
+            <Plus className="h-4 w-4" />
+            Novo Pet
+          </button>
+        </div>
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
           <input
